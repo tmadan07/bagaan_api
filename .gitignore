@@ -1,0 +1,6 @@
+*.exe
+
+liquibase.properties
+config.yaml
+sqlc.yaml
+go.sum

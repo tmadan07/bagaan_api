@@ -1,0 +1,17 @@
+databaseChangeLog:
+    - include:
+        file: db/migration/changelog.part.table.yaml
+        relativeToChangelogFile: true
+        validCheckSum: any
+    - include:
+        file: db/migration/changelog.part.seed.yaml
+        relativeToChangelogFile: true
+        validCheckSum: any
+    # - include:
+    #     file: db/migration/changelog.part.function.yaml
+    #     relativeToChangelogFile: true
+    #     validCheckSum: any
+    # - include:
+    #     file: db/migration/changelog.part.relation.yaml
+    #     relativeToChangelogFile: true
+    #     validCheckSum: any

@@ -1,0 +1,5 @@
+databaseChangeLog:
+    - include:
+        file: tables/user.sql
+        relativeToChangelogFile: true
+        validCheckSum: any

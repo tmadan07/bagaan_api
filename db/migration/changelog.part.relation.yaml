@@ -1,0 +1,5 @@
+databaseChangeLog:
+    # - include:
+    #     file: relations\roles_relations.sql
+    #     relativeToChangelogFile: true
+    #     validCheckSum: any

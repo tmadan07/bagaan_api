@@ -1,0 +1,20 @@
+CryptoEngine:
+  Host: 172.19.100.10
+  Port: 7777
+  Size: 2
+CBS:
+  Host: localhost
+  Port: 5432
+  User: postgres
+  Password: "professionalm3"
+  Dbname: cbs
+  Max_connections: 5
+  Max_open_conns: 5
+  Max_idle_conns: 5
+  Conn_max_lifetime: 5
+
+TokenSymmetricKey: 12345678901234567890123456789ABC
+AccessTokenDuration: 3600000000000
+RefreshTokenDuration: 36000000000000
+ServerAddress: 0.0.0.0:9090
+

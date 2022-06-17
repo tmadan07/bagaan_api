@@ -1,0 +1,11 @@
+-- --liquibasse formatted sql
+
+-- --changeset BishalDevkota:d_default_user_seed_0.0.1
+-- BEGIN;
+-- INSERT INTO public.users (username, password, full_name, email, status, created_by, role_id)
+--     VALUES ('admin', '$2a$10$KcHPo5An86Id8xb78Yh4TuqdkQgrNjLVHKMmfwUYvpWL2bhaNk.4S', 'admin_admin', 'admin@gmail.com', 1, 1, 1);
+-- INSERT INTO public.users (username, password, full_name, email, status, created_by, role_id)
+--     VALUES ('manager', '$2a$10$YDJY1I8rE1KCTQpGADWMaeb.HbA.xqkVsW3jbCAAzwtDqdXhHBV8y', 'manager_manager', 'manager@gmail.com', 1, 1, 1);
+-- COMMIT;
+-- --rollback TRUNCATE TABLE public.users CASCADE;
+-- a

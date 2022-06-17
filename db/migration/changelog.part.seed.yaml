@@ -1,0 +1,5 @@
+databaseChangeLog:
+    - includeAll:
+        path: seeds/
+        relativeToChangelogFile: true
+        validCheckSum: any
