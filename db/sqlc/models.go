@@ -10,13 +10,14 @@ import (
 )
 
 type User struct {
-	ID                  int32          `json:"id"`
-	Username            string         `json:"username"`
-	Password            string         `json:"password"`
-	AuthCode            sql.NullString `json:"auth_code"`
-	FullName            string         `json:"full_name"`
-	Email               string         `json:"email"`
-	PasswordChangedDate time.Time      `json:"password_changed_date"`
-	UpdatedDate         sql.NullTime   `json:"updated_date"`
-	CreatedDate         time.Time      `json:"created_date"`
+	ID                        int32          `json:"id"`
+	Username                  string         `json:"username"`
+	Password                  string         `json:"password"`
+	AuthCode                  sql.NullString `json:"auth_code"`
+	FullName                  string         `json:"full_name"`
+	PasswordVerificationToken sql.NullString `json:"password_verification_token"`
+	Email                     string         `json:"email"`
+	PasswordChangedDate       time.Time      `json:"password_changed_date"`
+	UpdatedDate               sql.NullTime   `json:"updated_date"`
+	CreatedDate               time.Time      `json:"created_date"`
 }

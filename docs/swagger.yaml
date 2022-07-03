@@ -392,12 +392,12 @@ definitions:
 host: localhost:8080
 info:
   contact:
-    email: asarfi.pay@gmaiil.com
-    name: Asarfi Pay
-    url: http://www.asarfi.live/contact
-  description: Asarfi Acqurier API is an api for card management and payment processing
-  termsOfService: http://asarfi.live./terms/
-  title: Asarfi Acqurier API
+     email: ecommerce.pay@gmaiil.com
+    name: ecommerce Pay
+    url: http://www.ecommerce.live/contact
+  description: ecommerce Acqurier API is an api for card management and payment processing
+  termsOfService: http://ecommerce.live./terms/
+  title: ecommerce Acqurier API
   version: "1.0"
 paths:
   /api/v1/customerDetails/{phone_number}:

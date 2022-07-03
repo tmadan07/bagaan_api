@@ -26,10 +26,26 @@ func (q *Queries) AuthCodeUser(ctx context.Context, arg AuthCodeUserParams) erro
 	return err
 }
 
+const changePasswordUser = `-- name: ChangePasswordUser :exec
+UPDATE users u
+SET password= $1
+where u.id =$2
+`
+
+type ChangePasswordUserParams struct {
+	Password string `json:"password"`
+	ID       int32  `json:"id"`
+}
+
+func (q *Queries) ChangePasswordUser(ctx context.Context, arg ChangePasswordUserParams) error {
+	_, err := q.db.ExecContext(ctx, changePasswordUser, arg.Password, arg.ID)
+	return err
+}
+
 const createUser = `-- name: CreateUser :one
 INSERT INTO users as u(username,password,full_name,auth_code,email) 
 VALUES ($1, $2, $3, $4,$5) 
-RETURNING id, username, password, auth_code, full_name, email, password_changed_date, updated_date, created_date
+RETURNING id, username, password, auth_code, full_name, password_verification_token, email, password_changed_date, updated_date, created_date
 `
 
 type CreateUserParams struct {
@@ -55,6 +71,7 @@ func (q *Queries) CreateUser(ctx context.Context, arg CreateUserParams) (User, e
 		&i.Password,
 		&i.AuthCode,
 		&i.FullName,
+		&i.PasswordVerificationToken,
 		&i.Email,
 		&i.PasswordChangedDate,
 		&i.UpdatedDate,
@@ -64,7 +81,7 @@ func (q *Queries) CreateUser(ctx context.Context, arg CreateUserParams) (User, e
 }
 
 const getUser = `-- name: GetUser :one
-SELECT id, username, password, auth_code, full_name, email, password_changed_date, updated_date, created_date from users WHERE username = $1 LIMIT 1
+SELECT id, username, password, auth_code, full_name, password_verification_token, email, password_changed_date, updated_date, created_date from users WHERE username = $1 LIMIT 1
 `
 
 func (q *Queries) GetUser(ctx context.Context, username string) (User, error) {
@@ -76,6 +93,51 @@ func (q *Queries) GetUser(ctx context.Context, username string) (User, error) {
 		&i.Password,
 		&i.AuthCode,
 		&i.FullName,
+		&i.PasswordVerificationToken,
+		&i.Email,
+		&i.PasswordChangedDate,
+		&i.UpdatedDate,
+		&i.CreatedDate,
+	)
+	return i, err
+}
+
+const getUserById = `-- name: GetUserById :one
+select id, username, password, auth_code, full_name, password_verification_token, email, password_changed_date, updated_date, created_date from users where id=$1
+`
+
+func (q *Queries) GetUserById(ctx context.Context, id int32) (User, error) {
+	row := q.db.QueryRowContext(ctx, getUserById, id)
+	var i User
+	err := row.Scan(
+		&i.ID,
+		&i.Username,
+		&i.Password,
+		&i.AuthCode,
+		&i.FullName,
+		&i.PasswordVerificationToken,
+		&i.Email,
+		&i.PasswordChangedDate,
+		&i.UpdatedDate,
+		&i.CreatedDate,
+	)
+	return i, err
+}
+
+const getUserEmail = `-- name: GetUserEmail :one
+SELECT id, username, password, auth_code, full_name, password_verification_token, email, password_changed_date, updated_date, created_date from users WHERE email = $1 LIMIT 1
+`
+
+func (q *Queries) GetUserEmail(ctx context.Context, email string) (User, error) {
+	row := q.db.QueryRowContext(ctx, getUserEmail, email)
+	var i User
+	err := row.Scan(
+		&i.ID,
+		&i.Username,
+		&i.Password,
+		&i.AuthCode,
+		&i.FullName,
+		&i.PasswordVerificationToken,
 		&i.Email,
 		&i.PasswordChangedDate,
 		&i.UpdatedDate,
@@ -85,7 +147,7 @@ func (q *Queries) GetUser(ctx context.Context, username string) (User, error) {
 }
 
 const getUsers = `-- name: GetUsers :many
-select id, username, password, auth_code, full_name, email, password_changed_date, updated_date, created_date from users
+select id, username, password, auth_code, full_name, password_verification_token, email, password_changed_date, updated_date, created_date from users
 `
 
 func (q *Queries) GetUsers(ctx context.Context) ([]User, error) {
@@ -103,6 +165,7 @@ func (q *Queries) GetUsers(ctx context.Context) ([]User, error) {
 			&i.Password,
 			&i.AuthCode,
 			&i.FullName,
+			&i.PasswordVerificationToken,
 			&i.Email,
 			&i.PasswordChangedDate,
 			&i.UpdatedDate,
@@ -119,4 +182,20 @@ func (q *Queries) GetUsers(ctx context.Context) ([]User, error) {
 		return nil, err
 	}
 	return items, nil
+}
+
+const passwordTokenUser = `-- name: PasswordTokenUser :exec
+UPDATE users u
+SET password_verification_token= $1
+where u.id =$2
+`
+
+type PasswordTokenUserParams struct {
+	PasswordVerificationToken sql.NullString `json:"password_verification_token"`
+	ID                        int32          `json:"id"`
+}
+
+func (q *Queries) PasswordTokenUser(ctx context.Context, arg PasswordTokenUserParams) error {
+	_, err := q.db.ExecContext(ctx, passwordTokenUser, arg.PasswordVerificationToken, arg.ID)
+	return err
 }

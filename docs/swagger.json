@@ -4,13 +4,13 @@
     ],
     "swagger": "2.0",
     "info": {
-        "description": "Asarfi Acqurier API is an api for card management and payment processing",
-        "title": "Asarfi Acqurier API",
-        "termsOfService": "http://asarfi.live./terms/",
+        "description": "ecommerce Acqurier API is an api for card management and payment processing",
+        "title": "ecommerce Acqurier API",
+        "termsOfService": "http://ecommerce.live./terms/",
         "contact": {
-            "name": "Asarfi Pay",
-            "url": "http://www.asarfi.live/contact",
-            "email": "asarfi.pay@gmaiil.com"
+            "name": "ecommerce Pay",
+            "url": "http://www.ecommerce.live/contact",
+            "email": "ecommerce.pay@gmaiil.com"
         },
         "version": "1.0"
     },

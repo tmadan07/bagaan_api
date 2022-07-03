@@ -7,7 +7,8 @@ RETURNING *;
 SELECT * from users WHERE username = $1 LIMIT 1;
 
 
-
+-- name: GetUserEmail :one
+SELECT * from users WHERE email = $1 LIMIT 1;
 -- name: GetUsers :many
 select * from users;
 
@@ -16,3 +17,15 @@ UPDATE users u
 SET auth_code= $1
 where u.id =$2;
 
+-- name: PasswordTokenUser :exec
+UPDATE users u
+SET password_verification_token= $1
+where u.id =$2;
+
+-- name: ChangePasswordUser :exec
+UPDATE users u
+SET password= $1
+where u.id =$2;
+
+-- name: GetUserById :one
+select * from users where id=$1;

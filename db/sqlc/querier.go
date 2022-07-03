@@ -10,9 +10,13 @@ import (
 
 type Querier interface {
 	AuthCodeUser(ctx context.Context, arg AuthCodeUserParams) error
+	ChangePasswordUser(ctx context.Context, arg ChangePasswordUserParams) error
 	CreateUser(ctx context.Context, arg CreateUserParams) (User, error)
 	GetUser(ctx context.Context, username string) (User, error)
+	GetUserById(ctx context.Context, id int32) (User, error)
+	GetUserEmail(ctx context.Context, email string) (User, error)
 	GetUsers(ctx context.Context) ([]User, error)
+	PasswordTokenUser(ctx context.Context, arg PasswordTokenUserParams) error
 }
 
 var _ Querier = (*Queries)(nil)

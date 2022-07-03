@@ -1,7 +1,7 @@
 package types
 
 import (
-	"asarfi/common/token"
+	"ecommerce/token"
 
 	"github.com/gin-gonic/gin"
 )
@@ -12,5 +12,5 @@ import (
 // }
 func GetCurrentUserId(ctx *gin.Context) int32 {
 	payload, _ := ctx.Get("current_user")
-	return payload.(*token.Payload).UserId
+	return payload.(*token.Payload).UserID
 }

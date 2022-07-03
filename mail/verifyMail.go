@@ -14,7 +14,7 @@ func (s *smtpServer) Address() string {
 	return s.host + ":" + s.port
 }
 
-func MailAuthentication(toMail string, verification string) (valid bool) {
+func SendMail(toMail string, OTP string) (valid bool) {
 
 	// Sender data.
 	from := "madanthapa0707@gmail.com"
@@ -22,7 +22,7 @@ func MailAuthentication(toMail string, verification string) (valid bool) {
 	password := "mpwgxpohnwblqbed"
 	// Receiver email address.
 	to := []string{toMail}
-	authCodeMessage := "the authentication code is" + verification
+	authCodeMessage := "the authentication code is" + OTP
 	message := []byte(authCodeMessage)
 	// smtp server configuration.
 	smtpServer := smtpServer{host: "smtp.gmail.com", port: "587"}

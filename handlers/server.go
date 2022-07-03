@@ -1,19 +1,14 @@
 package handlers
 
 import (
-	"ecommerce/token"
 	db "ecommerce/db/sqlc"
 	"ecommerce/middleware"
 	"ecommerce/models"
+	"ecommerce/token"
 
 	"fmt"
 
 	"github.com/gin-gonic/gin"
-
-	ginSwagger "github.com/swaggo/gin-swagger"
-
-	// gin-swagger middleware
-	swaggerFiles "github.com/swaggo/files"
 )
 
 // swagger embed files
@@ -46,8 +41,6 @@ func (server *Server) setupRouter() {
 	router.Use(middleware.CORSMiddleware())
 	v1 := router.Group("/api/v1")
 	{
-		// v1.Use(middleware.AuthMiddleware(server.tokenMaker, server.store))
-		// v1.Use(middleware.AuditMiddleware(server.store))
 
 		_users := v1.Group("/users")
 		{
@@ -55,8 +48,10 @@ func (server *Server) setupRouter() {
 		}
 		v1.POST("/register", server.createUser)
 		v1.POST("/login", server.loginUser)
+		v1.POST("/forgetpwd", server.ForgetPWD)
+		v1.POST("/resetpwd/:id", server.ChangePWD)
+		v1.POST("/changepwd/:id", server.ChangePWDById)
 	}
-	router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 
 	server.router = router
 

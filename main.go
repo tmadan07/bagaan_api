@@ -12,21 +12,13 @@ import (
 	log "github.com/sirupsen/logrus"
 )
 
-// @title           Asarfi Acqurier API
-// @version         1.0
-// @description     Asarfi Acqurier API is an api for card management and payment processing
-// @termsOfService  http://asarfi.live./terms/
-
-// @contact.name   Asarfi Pay
-// @contact.url    http://www.asarfi.live/contact
-// @contact.email  asarfi.pay@gmaiil.com
 
 // @host     localhost:8080
 // @schemes  http
 // @BasePath
 func main() {
-	log.Info("Starting ASARFI API ...")
-	log.Info("Initiating connection to core_asarfi")
+	log.Info("Starting BAGAAN API ...")
+	log.Info("Initiating connection to core_bagaan")
 	err := models.InitCBS()
 	if err != nil {
 		log.Panic(err)

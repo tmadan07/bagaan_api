@@ -10,11 +10,6 @@ const docTemplate = `{
     "info": {
         "description": "{{escape .Description}}",
         "title": "{{.Title}}",
-        "termsOfService": "http://asarfi.live./terms/",
-        "contact": {
-            "name": "Asarfi Pay",
-            "url": "http://www.asarfi.live/contact",
-            "email": "asarfi.pay@gmaiil.com"
         },
         "version": "{{.Version}}"
     },
@@ -1057,8 +1052,8 @@ var SwaggerInfo = &swag.Spec{
 	Host:             "localhost:8080",
 	BasePath:         "",
 	Schemes:          []string{"http"},
-	Title:            "Asarfi Acqurier API",
-	Description:      "Asarfi Acqurier API is an api for card management and payment processing",
+	Title:            "Bagaan Acqurier API",
+	Description:      "Bagaan Acqurier API is an api for card management and payment processing",
 	InfoInstanceName: "swagger",
 	SwaggerTemplate:  docTemplate,
 }
